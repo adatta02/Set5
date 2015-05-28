@@ -5,8 +5,18 @@ function parsefile(fileBody){
 	var filearray = fileBody.split("\n");
 	//console.log(filearray.length);
 	
-	get_lines(filearray);
-	//single_number(filearray);
+	var processedNumbers = [];		
+	for(var i = 0; i < filearray.length &&  i < 12; i+=4){
+		var l = filearray.slice(i, i+3);		
+		var num = single_number(l);		
+		processedNumbers.push(num);		
+		
+	}	
+	
+	console.log( processedNumbers );
+	
+	// get_lines(filearray);
+	// single_number(filearray);
 }
 
 function get_lines(a){
@@ -48,9 +58,12 @@ function single_number(a){
 	var max_row = a.length;
 	var max_col = a[0].length;
 	
-	while(index != max_col){
+	var returnNum = "";
+	
+	while(index < max_col){
 		cur_col = index;
 		cur_row = 0;
+		
 		//temporary 2d array to get 3x3 array
 		var s = new Array(3);
 		for (var i = 0; i < 3; i++) {
@@ -66,17 +79,20 @@ function single_number(a){
 			cur_col = index;
 		}
 
-		//now that you have the 3x3 find what number it represents
+		// now that you have the 3x3 find what number it represents
 		index += 3;
-		generate_number(s);
-  		
+		
+		var n = generate_number(s);
+		returnNum += n;  		
   	}
+  	
+  	return returnNum;
 }
 
 function generate_number(s){
 	var underscore = 0;
 	var upright = 0;
-	var machinenumbers = [];
+	var machinenumbers = null;
 
 	for(var r = 0; r < 3; r ++){
 			for(var c = 0; c < 3; c++){
@@ -91,37 +107,34 @@ function generate_number(s){
 	}
 
 	if((underscore == 2) && (upright == 4)){
-		machinenumbers.push(0);
+		machinenumbers = 0;
 	}
 	else if((underscore == 0) && (upright == 2)){
-		machinenumbers.push(1);
+		machinenumbers = 1;
 	}
 	else if((underscore == 1) && (upright == 3)){
-		machinenumbers.push(4);
+		machinenumbers = 4;
 	}
 	else if((underscore == 3) && (upright == 3)){
-		machinenumbers.push(6);
+		machinenumbers = 6;
 	}
 	else if((underscore == 1) && (upright == 2)){
-		machinenumbers.push(7);
+		machinenumbers = 7;
 	}
 	else if((underscore == 3) && (upright == 4)){
-		machinenumbers.push(8);
+		machinenumbers = 8;
 	}
 	else if((underscore == 3) && (upright == 2)){
 		if(s[1][2] == "|" && s[2][2] == "|"){
-			machinenumbers.push(3);
+			machinenumbers = 3;
 		}
 		if(s[1][0] == "|" && s[2][2] == "|"){
-			machinenumbers.push(5);
+			machinenumbers = 5;
 		}
 		if(s[1][2] == "|" && s[2][0] == "|"){
-			machinenumbers.push(2);
+			machinenumbers = 2;
 		}
 	}
 
-	console.log(machinenumbers);
+	return machinenumbers;
 }
-
-
-
