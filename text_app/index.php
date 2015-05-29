@@ -33,7 +33,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="login/login.html">Login</a>
+                            <li><a href="/login.php">Login</a>
                             </li>
                         </ul>
                     </div>
