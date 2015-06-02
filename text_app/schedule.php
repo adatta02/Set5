@@ -11,6 +11,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
+
                             <li><a href="user_events.php">My Events</a>
                             </li>
                         </ul>
