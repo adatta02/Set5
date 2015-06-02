@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+<?php require_once('text_app_connect/mysql_connect.php');?>
+
 <html>
 
 <head>
@@ -33,7 +35,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="login/login.html">Login</a>
+                            <li><a href="/login.php">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -67,6 +69,28 @@
             				</fieldset>
           				</form>
           			</div>
+              <?php 
+              
+              $query = "SELECT user_name, email FROM text.users";
+
+              $response = mysql_query($query);
+
+              if($response){
+                echo'<table>';
+                while($row = mysql_fetch_array($response)){
+                  echo'<tr><td align = "left">' .
+                  $row['user_name'] . '</td><td align = "left">' .
+                  $row['email'] . '</td>'; 
+                  echo '</tr>';
+                }
+                echo'</table>';
+              }
+              else{
+                echo "Could not issue database query";
+
+                echo mysql_error($dbc);
+              }
+              ?>
         		</div>
         
       		</div> 

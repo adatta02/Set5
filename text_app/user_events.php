@@ -11,7 +11,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="../sched_event/schedule.html">Create New Event</a>
+                            <li><a href="/schedule.php">Create New Event</a>
                             </li>
                         </ul>
                     </div>

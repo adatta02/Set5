@@ -11,7 +11,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="../index.html">Home</a>
+                            <li><a href="/index.php">Home</a>
                             </li>
                         </ul>
                     </div>
