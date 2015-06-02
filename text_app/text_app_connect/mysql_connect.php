@@ -14,7 +14,7 @@ class Config
         self::$confArray[$name] = $value;
     }
 }
-	// setting up db
+	// setting up db. This is outside of the Config Class. Check to make sure this is ok
 	Config::write('db.host', '127.0.0.1');
 	Config::write('db.basename', 'text');
 	Config::write('db.user', 'webuser');

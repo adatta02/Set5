@@ -1,6 +1,4 @@
 
-<?php require_once('text_app_connect/mysql_connect.php');?>
-
 <html>
 
 <head>
@@ -51,7 +49,22 @@
           			</h1>
           			<br><br><br>
           			<div class="panel-body">
-          				<form accept-charset="UTF-8" action="create_user.php" method ="post" role="form" class="col-lg-12">
+
+                  <!--Creating Div for message output-->
+                  <div id ="message-output">
+
+                    <?php   
+                    if(isset($_POST['submit'])){ //check if form was submitted
+                      require_once ('create_user.php'); 
+                      $message = "Successfully added to database!";
+                      echo'<h1>' . $message . '</h1>';
+                    }    
+                    ?>
+                    
+                  </div>
+                  <!--End of message output div-->
+
+          				<form accept-charset="UTF-8" action="" method ="post" role="form" class="col-lg-12">
           					<fieldset>
             						
             						<!--Place Login result here-->

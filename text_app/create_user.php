@@ -1,7 +1,3 @@
-<html>
-<head>
-</head>
-<body>
 	<?php
 	include('text_app_connect/mysql_connect.php');
 	
@@ -44,12 +40,11 @@
 				$stmt->bindParam(':email', $email);
 				$stmt->bindParam(':password', $password);
 
-				$stmt->execute();
+				$result = $stmt->execute();
 
-				$affected_rows = $stmt->affected_rows;
+				//$affected_rows = $stmt->affected_rows;
 
-				if($affected_rows == 1){
-					echo'User entered';
+				if($result == true){
 				}
 				else{
 					echo 'Error inputing user';
@@ -64,5 +59,3 @@
 		}
 	}
 	?>
-</body>
-</html>
