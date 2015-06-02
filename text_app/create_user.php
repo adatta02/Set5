@@ -3,6 +3,14 @@
 </head>
 <body>
 	<?php
+	include('text_app_connect/mysql_connect.php');
+	
+	post_data();
+
+	function post_data(){
+
+		global $dbc;
+
 		if(isset($_POST['submit'])){
 
 			$datamissing = array();
@@ -30,9 +38,8 @@
 
 			if(empty($datamissing)){
 				
-				require_once('text_app_connect/mysql_connect.php');
-
 				$stmt = $dbc->prepare("INSERT INTO users (user_name, email, password) VALUES (:user, :email, :password)");
+
 				$stmt->bindParam(':user', $user);
 				$stmt->bindParam(':email', $email);
 				$stmt->bindParam(':password', $password);
@@ -59,6 +66,7 @@
 		else{
 			echo'Please input all required submit fields';
 		}
+	}
 	?>
 </body>
 </html>
