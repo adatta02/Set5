@@ -1,4 +1,5 @@
 
+<?php require_once ('create_user.php'); ?>
 <html>
 
 <head>
@@ -53,14 +54,16 @@
                   <!--Creating Div for message output-->
                   <div id ="message-output">
 
-                    <?php   
-                    if(isset($_POST['submit'])){ //check if form was submitted
-                      require_once ('create_user.php'); 
+                    <?php  
+                    if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
+                      $input_to_check = $_POST;
+                      validate_data($input_to_check);
+                      
                       $message = "Successfully added to database!";
                       echo'<h1>' . $message . '</h1>';
                     }    
                     ?>
-                    
+
                   </div>
                   <!--End of message output div-->
 
