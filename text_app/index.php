@@ -51,7 +51,7 @@
           			</h1>
           			<br><br><br>
           			<div class="panel-body">
-          				<form accept-charset="UTF-8" role="form" class="col-lg-12">
+          				<form accept-charset="UTF-8" action="create_user.php" method ="post" role="form" class="col-lg-12">
           					<fieldset>
             						
             						<!--Place Login result here-->
@@ -59,13 +59,16 @@
                                 		<div class="newaccount_result"></div>
                           			</label>
                         <div class ="form-group">
-            						  <input class="form-control input-lg" title="text input box for email" placeholder="Email" type="text">
+                          <input class="form-control input-lg" title="text input box for username" placeholder="Username" type="text" name ="user">
+                        </div>
+                        <div class ="form-group">
+            						  <input class="form-control input-lg" title="text input box for email" placeholder="Email" type="text" name = "email">
             						</div>
 
                         <div class ="form-group">
-            						  <input class="form-control input-lg" title="text input box for email" placeholder="Password" type="password">
+            						  <input class="form-control input-lg" title="text input box for email" placeholder="Password" type="password" name ="password">
                         </div>
-              						<input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Create Account »">
+              						<input class="btn btn-lg btn-success btn-block" type="submit" name ="submit" id="login" value="Create Account »">
             				</fieldset>
           				</form>
           			</div>
