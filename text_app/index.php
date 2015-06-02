@@ -72,28 +72,7 @@
             				</fieldset>
           				</form>
           			</div>
-              <?php 
               
-              $query = "SELECT user_name, email FROM text.users";
-
-              $response = mysql_query($query);
-
-              if($response){
-                echo'<table>';
-                while($row = mysql_fetch_array($response)){
-                  echo'<tr><td align = "left">' .
-                  $row['user_name'] . '</td><td align = "left">' .
-                  $row['email'] . '</td>'; 
-                  echo '</tr>';
-                }
-                echo'</table>';
-              }
-              else{
-                echo "Could not issue database query";
-
-                echo mysql_error($dbc);
-              }
-              ?>
         		</div>
         
       		</div> 

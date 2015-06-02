@@ -9,8 +9,6 @@
 
 	function post_data(){
 
-		global $dbc;
-
 		if(isset($_POST['submit'])){
 
 			$datamissing = array();
@@ -38,7 +36,9 @@
 
 			if(empty($datamissing)){
 				
-				$stmt = $dbc->prepare("INSERT INTO users (user_name, email, password) VALUES (:user, :email, :password)");
+				$temp = Core::getInstance();
+
+				$stmt = $temp->dbh->prepare("INSERT INTO users (user_name, email, password) VALUES (:user, :email, :password)");
 
 				$stmt->bindParam(':user', $user);
 				$stmt->bindParam(':email', $email);
@@ -50,17 +50,13 @@
 
 				if($affected_rows == 1){
 					echo'User entered';
-					$stmt->close();
 				}
 				else{
 					echo 'Error inputing user';
 					echo mysql_error();
-					$stmt->close();
 				}
 
 			}
-
-			$dbc->close();
 
 		}
 		else{
