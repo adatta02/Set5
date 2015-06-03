@@ -1,6 +1,5 @@
-<?php require_once 'header.php'; ?>
-<?php require_once ('validate_user.php'); ?>
-
+<?php require_once ('validate_user.php');?>
+<?php require_once 'header.php';?>
 <body>
 		<div class ="container-full">
             <!--navbar-->
@@ -12,8 +11,16 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/index.php">Home</a>
-                            </li>
+                            <li><a href="/index.php">Home</a></li>
+
+                            <?php
+                              if(isset($_SESSION['$current_user'])){
+                                echo '<li><a href="/user_events.php">My Events</a></li>';
+                                echo'<li> class="navbar-btn"><a href="/index.php" class="btn btn-default">Log out</a></li>';
+                                print_r($_SESSION);
+                              }
+                            ?>
+
                         </ul>
                     </div>
                 </div>

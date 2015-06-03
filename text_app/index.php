@@ -1,5 +1,8 @@
 
-<?php require_once ('create_user.php'); ?>
+<?php require_once ('create_user.php');?>
+
+<?php require_once('logout.php');?>
+
 <html>
 
 <head>

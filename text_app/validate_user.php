@@ -1,4 +1,6 @@
 <?php
+session_start(); //starting current session
+
 include('text_app_connect/mysql_connect.php');
 
 function user_existence ($form_array){
@@ -18,8 +20,9 @@ function user_existence ($form_array){
 
 				$results = $stmt->fetchAll();
 				
+				//This means that the user/password combo exists inside the database (and only once): They've Logged in
 				if($results[0][0] == 1){
-					echo'This is a valid username';
+					store_cur_session($user);
 				}
 				else{
 					echo'No User exists with this name';
@@ -27,6 +30,22 @@ function user_existence ($form_array){
 				
 
 	}
+
+function store_cur_session($cur_user){
+
+	//$test_user = 'Phil';
+	$temp = Core::getInstance();
+
+	$stmt = $temp->dbh->prepare("SELECT id FROM users WHERE user_name = :username");
+
+	$stmt->bindParam(':username', $cur_user);
+
+	$stmt->execute();
+
+	$results = $stmt->fetchAll();
+
+	$_SESSION['$current_user'] = $results[0][0];
+}
 
 
 function validate_input($form_array){
@@ -55,5 +74,4 @@ function validate_input($form_array){
 		}
 			return($error_array);
 	}
-
 ?>
