@@ -9,19 +9,22 @@ function user_existence ($form_array){
 
 				$temp = Core::getInstance();
 
-				$stmt = $temp->dbh->prepare("SELECT user_name FROM users WHERE user_name = :username AND password = :password");
+				$stmt = $temp->dbh->prepare("SELECT Count(*) FROM users WHERE user_name = :username AND password = :password");
 
 				$stmt->bindParam(':username', $user);
 				$stmt->bindParam(':password', $password);
 
 				$stmt->execute();
+
+				$results = $stmt->fetchAll();
 				
-				if($stmt->num_rows == 1){
+				if($results[0][0] == 1){
 					echo'This is a valid username';
 				}
 				else{
 					echo'No User exists with this name';
 				}
+				
 
 	}
 
