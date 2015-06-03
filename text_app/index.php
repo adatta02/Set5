@@ -77,7 +77,8 @@
           				<form accept-charset="UTF-8" action="" method ="post" role="form" class="col-lg-12">
           					<fieldset>
                         <div class ="form-group">
-                          <input class="form-control input-lg" title="text input box for username" placeholder="Username" type="text" name ="user">
+                          <input class="form-control input-lg" title="text input box for username" placeholder="Username" type="text" name ="user" 
+                          <?php if($_SERVER["REQUEST_METHOD"] == "POST"){ echo 'value="' . $input_to_check['user'] . '"';} ?>>
 
                           <?php
                             echo'<span class="help-inline">' . $errors['user'] . '</span>';
@@ -85,7 +86,8 @@
 
                         </div>
                         <div class ="form-group">
-            						  <input class="form-control input-lg" title="text input box for email" placeholder="Email" type="text" name = "email">
+            						  <input class="form-control input-lg" title="text input box for email" placeholder="Email" type="text" name = "email"
+                          <?php if ($_SERVER["REQUEST_METHOD"] == "POST"){echo 'value ="' . $input_to_check['email'] . '"'; }?>>
 
                           <?php
                             echo'<span class="help-inline">' . $errors['email'] . '</span>';
@@ -94,7 +96,8 @@
             						</div>
 
                         <div class ="form-group">
-            						  <input class="form-control input-lg" title="text input box for email" placeholder="Password" type="password" name ="password">
+            						  <input class="form-control input-lg" title="text input box for password" placeholder="Password" type="password" name ="password"
+                          <?php if ($_SERVER["REQUEST_METHOD"] == "POST"){echo 'value ="' . $input_to_check['password'] . '"'; }?>>
 
                           <?php
                             echo'<span class="help-inline">' . $errors['password'] . '</span>';
