@@ -43,7 +43,8 @@
             <!--/navbar-->
             <!--row-->
             <div class="row">
-        		<div class="col-lg-12 text-center v-center">
+        		<div class="col-lg-6 text-center v-center">
+            
           			<h1>
           				Welcome to FIGURE OUT NAME, the simplest way to host kickass parties
           				with a broken doorbell.
@@ -73,8 +74,8 @@
 
                   </div>
                   <!--End of message output div-->
-
-          				<form accept-charset="UTF-8" action="" method ="post" role="form" class="col-lg-12">
+                  
+          				<form accept-charset="UTF-8" action="" method ="post" role="form" class="form-horizontal">
           					<fieldset>
                         <div class ="form-group">
                           <input class="form-control input-lg" title="text input box for username" placeholder="Username" type="text" name ="user" 
@@ -107,6 +108,7 @@
               						<input class="btn btn-lg btn-success" type="submit" name ="submit" id="login" value="Create Account »">
             				</fieldset>
           				</form>
+                
           			</div>
               
         		</div>

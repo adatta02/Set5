@@ -22,8 +22,7 @@
 				if($result == true){ //Ask Ashish if this is ok
 				}
 				else{
-					echo 'Error inputing user';
-					echo mysql_error();
+					echo 'Username already exists';
 				}
 	}
 	

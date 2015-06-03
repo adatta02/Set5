@@ -1,4 +1,5 @@
 <?php require_once 'header.php'; ?>
+<?php require_once ('validate_user.php'); ?>
 
 <body>
 		<div class ="container-full">
@@ -26,22 +27,51 @@
           			</h1>
           			<br><br><br>
           			<div class="panel-body">
-          				<form accept-charset="UTF-8" role="form" class="col-lg-12">
-          					<fieldset>
-                          <!--Place Login result here-->
-                          <label class="panel-login">
-                                <div class="login_result"></div>
-                          </label>
 
-            						<input class="form-control input-lg" title="text input box for email" placeholder="Email" type="text">
-            						<br><br>
-            						<input class="form-control input-lg" title="text input box for email" placeholder="Password" type="password">
+                  <!--Creating Div for message output-->
+                  <div id ="message-output">
 
-            						<br><br>
-              						<input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Login»">
-            				</fieldset>
-          				</form>
-          			</div>
+                    <?php  
+                    if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
+                      $input_to_check = $_POST;
+                      $errors = validate_input($input_to_check);
+
+                      if(empty($errors)){
+                        user_existence($input_to_check);
+                      }
+                    }    
+                    ?>
+
+                  </div>
+                  <!--End of message output div-->
+                  
+                  <form accept-charset="UTF-8" action="" method ="post" role="form" class="form-horizontal">
+                    <fieldset>
+                        <div class ="form-group">
+                          <input class="form-control input-lg" title="text input box for username" placeholder="Username" type="text" name ="user" 
+                          <?php if($_SERVER["REQUEST_METHOD"] == "POST"){ echo 'value="' . $input_to_check['user'] . '"';} ?>>
+
+                          <?php
+                            echo'<span class="help-inline">' . $errors['user'] . '</span>';
+                          ?>
+
+                        </div>
+                        <div class ="form-group">
+
+                        <div class ="form-group">
+                          <input class="form-control input-lg" title="text input box for password" placeholder="Password" type="password" name ="password"
+                          <?php if ($_SERVER["REQUEST_METHOD"] == "POST"){echo 'value ="' . $input_to_check['password'] . '"'; }?>>
+
+                          <?php
+                            echo'<span class="help-inline">' . $errors['password'] . '</span>';
+                          ?>
+
+                        </div>
+                          <input class="btn btn-lg btn-success" type="submit" name ="submit" id="login" value="Login »">
+                    </fieldset>
+                  </form>
+                
+                </div>
         		</div>
         
       		</div> 
