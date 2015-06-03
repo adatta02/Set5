@@ -57,10 +57,17 @@
                     <?php  
                     if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
                       $input_to_check = $_POST;
-                      validate_data($input_to_check);
-                      
-                      $message = "Successfully added to database!";
-                      echo'<h1>' . $message . '</h1>';
+                      $errors = validate_data($input_to_check);
+
+                      if(empty($errors)){
+                        post_data($input_to_check);
+                        $message = "You have successfully been added!";
+                         echo'<h1>' . $message . '</h1>';
+                      }
+                      else{
+                        $message = "Error adding information to database!";
+                        echo'<h1>' . $message . '</h1>';
+                      }
                     }    
                     ?>
 
@@ -69,22 +76,32 @@
 
           				<form accept-charset="UTF-8" action="" method ="post" role="form" class="col-lg-12">
           					<fieldset>
-            						
-            						<!--Place Login result here-->
-                          			<label class="panel-login">
-                                		<div class="newaccount_result"></div>
-                          			</label>
                         <div class ="form-group">
                           <input class="form-control input-lg" title="text input box for username" placeholder="Username" type="text" name ="user">
+
+                          <?php
+                            echo'<span class="help-inline">' . $errors['user'] . '</span>';
+                          ?>
+
                         </div>
                         <div class ="form-group">
             						  <input class="form-control input-lg" title="text input box for email" placeholder="Email" type="text" name = "email">
+
+                          <?php
+                            echo'<span class="help-inline">' . $errors['email'] . '</span>';
+                          ?>
+
             						</div>
 
                         <div class ="form-group">
             						  <input class="form-control input-lg" title="text input box for email" placeholder="Password" type="password" name ="password">
+
+                          <?php
+                            echo'<span class="help-inline">' . $errors['password'] . '</span>';
+                          ?>
+
                         </div>
-              						<input class="btn btn-lg btn-success btn-block" type="submit" name ="submit" id="login" value="Create Account »">
+              						<input class="btn btn-lg btn-success" type="submit" name ="submit" id="login" value="Create Account »">
             				</fieldset>
           				</form>
           			</div>

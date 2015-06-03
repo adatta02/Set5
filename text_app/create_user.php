@@ -1,48 +1,13 @@
 	<?php
 	include('text_app_connect/mysql_connect.php');
-	
-	post_data();
 
-	function post_data(){
+	function post_data($form_array){
 
-		if(isset($_POST['submit'])){
-			$datacleared = validate_data();
+				$user = (strip_tags(trim($form_array['user'])));
+				$email = $form_array['email'];
+				$password = (strip_tags(trim($form_array['password'])));
 
-			$datamissing = array();
 
-			if(empty($_POST['user'])){
-				$datamissing[] = 'user';
-			}
-			else{
-				if ( strlen( $_POST[ ‘user’ ] ) <= 15 ){
-					$user = strip_tags(trim($_POST['user']));
-				}
-			}
-
-			if(empty($_POST['email'])){
-				$datamissing[] = 'email';
-			}
-			else{
-				$regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-				if ( strlen( $_POST[ ‘email’ ] ) <= 30 ){
-						$temp = trim($_POST['email']);
-					if ( preg_match( $regex, $temp ) ){
-						$email = trim($_POST['email']);
-					}
-				}
-			}
-
-			if(empty($_POST['password'])){
-				$datamissing[] = 'password';
-			}
-			else{
-				if ( strlen( $_POST[ ‘password’] ) >= 5 && strlen( $_POST[ ‘password’ ] ) <= 30 ){
-					$password = strip_tags(trim($_POST['password']));
-				}
-			}
-
-			if(empty($datamissing)){
-				
 				$temp = Core::getInstance();
 
 				$stmt = $temp->dbh->prepare("INSERT INTO users (user_name, email, password) VALUES (:user, :email, :password)");
@@ -53,67 +18,57 @@
 
 				$result = $stmt->execute();
 
-				//$affected_rows = $stmt->affected_rows;
 
-				if($result == true){
+				if($result == true){ //Ask Ashish if this is ok
 				}
 				else{
 					echo 'Error inputing user';
 					echo mysql_error();
 				}
-
-			}
-
-		}
-		else{
-			echo'<h1> Please input all required submit fields </h1>';
-		}
 	}
-	function validate_data($form_array){
-		$datacleared = false;
+	
 
-		if(isset($formarray['submit'])){
+	function validate_data($form_array){
+
+		if(isset($form_array['submit'])){
 
 			$error_array = array();
 
-			if(empty(form_array['user'])){
-				$error_array['user'] = 'missing  user name data from form';
-				return $datacleared;
+			if(empty($form_array['user'])){
+				$error_array['user'] = 'missing username data from form';
 			}
 			else{
-				if ( strlen( $_POST[ ‘user’ ] ) <= 15 ){
-					$user = strip_tags(trim($_POST['user']));
+				if (strlen(strip_tags(trim($form_array['user']))) > 15 ){
+					$error_array['user'] = 'username is to long';	
 				}
 			}
 
 			if(empty($form_array['email'])){
-				$datamissing['email'] = 'missing email data from form';
-				return $datacleared;
+				$error_array['email'] = 'missing email data from form';
 			}
 			else{
-				$regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-				if ( strlen( $_POST[ ‘email’ ] ) <= 30 ){
-						$temp = trim($_POST['email']);
-					if ( preg_match( $regex, $temp ) ){
-						$email = trim($_POST['email']);
+				$temp = trim($form_array['email']);
+
+				if (strlen($temp) > 30){
+					$error_array['email'] = 'email input to long';	
+				}
+				else if (filter_var($temp, FILTER_VALIDATE_EMAIL)){
 					}
+				else{
+					$error_array['email'] = 'email input is not in the correct format';
 				}
 			}
 
 			if(empty($form_array['password'])){
-				$error_array['password'] = 'password';
-				return $datacleared;
+				$error_array['password'] = 'missing password data from form';
 			}
 			else{
-				if ( strlen( $_POST[ ‘password’] ) >= 5 && strlen( $_POST[ ‘password’ ] ) <= 30 ){
-					$password = strip_tags(trim($_POST['password']));
-					$datacleared = true;
+				if (strlen(strip_tags(trim($form_array['password']))) < 5 || strlen(strip_tags(trim($form_array['password']))) > 30){
+					$error_array['password'] = 'password is not the right length';
 				}
 			}
 		}
-		return($error_array);
+			return($error_array);
 	}
 
-
-	}
 	?>
