@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
                           <?php
                             if($_SERVER["REQUEST_METHOD"] == "POST"){
                               if(array_key_exists('date', $errors)){
-                                echo'<span class="help-inline">3' . $errors['event_name'] . '</span>';
+                                echo'<span class="help-inline">' . $errors['date'] . '</span>';
                               }
                             }
                           ?>
