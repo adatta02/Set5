@@ -31,7 +31,7 @@ function user_existence ($form_array){
 function store_cur_session($cur_user){
 
 	//$test_user = 'Phil';
-	echo $cur_user;
+	//echo $cur_user;
 	$temp = Core::getInstance();
 
 	$stmt = $temp->dbh->prepare("SELECT id FROM users WHERE user_name = :username");
@@ -42,8 +42,8 @@ function store_cur_session($cur_user){
 
 	$results = $stmt->fetchAll();
 
-	$_SESSION['$current_user'] = $results[0]['user_id'];
-	var_dump($results);
+	$_SESSION['$current_user'] = $results[0]['id'];
+	//var_dump($results);
 }
 
 

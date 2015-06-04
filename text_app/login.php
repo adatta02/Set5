@@ -1,5 +1,5 @@
 <?php require_once ('bootstrap.php');?>
-<?php require_once 'header.php';?>
+<?php require_once ('header.php');?>
 <body>
 		<div class ="container-full">
             <!--navbar-->
@@ -58,7 +58,11 @@
                           <?php if($_SERVER["REQUEST_METHOD"] == "POST"){ echo 'value="' . $input_to_check['user'] . '"';} ?>>
 
                           <?php
-                            echo'<span class="help-inline">' . $errors['user'] . '</span>';
+                           if($_SERVER["REQUEST_METHOD"] == "POST"){
+                              if(array_key_exists('user', $errors)){
+                                echo'<span class="help-inline">' . $errors['user'] . '</span>';
+                              }
+                            }
                           ?>
 
                         </div>
@@ -69,7 +73,11 @@
                           <?php if ($_SERVER["REQUEST_METHOD"] == "POST"){echo 'value ="' . $input_to_check['password'] . '"'; }?>>
 
                           <?php
-                            echo'<span class="help-inline">' . $errors['password'] . '</span>';
+                            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                              if(array_key_exists('password', $errors)){
+                                echo'<span class="help-inline">' . $errors['password'] . '</span>';
+                              }
+                            }
                           ?>
 
                         </div>

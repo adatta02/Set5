@@ -8,8 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
 
     if(empty($errors)){
         post_event($input_to_check);
-        $message = "You have successfully been added!";
-        echo'<h1>' . $message . '</h1>';
     }
     else{
       $message = "Error adding information to database!";
@@ -48,34 +46,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
           			<div class="panel-body">
                      <!--Creating Div for message output-->
                   <div id ="message-output">
-                    <?php
-                      if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
-                        $input_to_check = $_POST;
-                        $errors = validate_event($input_to_check);
-
-                        if(empty($errors)){
-                          post_event($input_to_check);
-                          $message = "You have successfully been added!";
-                          echo'<h1>' . $message . '</h1>';
-                        }
-                        else{
-                          $message = "Error adding information to database!";
-                          echo'<h1>' . $message . '</h1>';
-                        }
-                      } 
-                    ?>
+                    
 
                   </div>
                   <!--End of message output div-->
-          				<form accept-charset="UTF-8" role="form" class="col-lg-12">
+          				<form accept-charset="UTF-8" role="form" class="col-lg-12" action="" method ="post">
           					<fieldset>
                       <div class = "form-group">
-            						<input class="form-control input-lg" title="text input box for event name" placeholder="Event Name" type="text" name ="event_name">
+            						<input class="form-control input-lg" title="text input box for event name" placeholder="Event Name" type="text" name ="event_name"
+                        <?php 
+                        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                          if(array_key_exists('event_name', $input_to_check)){
+                            echo 'value ="' . $input_to_check['event_name'] . '"'; 
+                          }
+                        }
+                          ?>>
+
+                          <?php
+                            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                              if(array_key_exists('event_name', $errors)){
+                                echo'<span class="help-inline">3' . $errors['event_name'] . '</span>';
+                              }
+                            }
+                          ?>
             					</div>
                       <div class ="form-group">
-            						<input class="form-control input-lg" title="text input box for date" placeholder="Event Date YYYY-MM-DD" type="text" name ="date">
+            						<input class="form-control input-lg" title="text input box for date" placeholder="Event Date YYYY-MM-DD" type="text" name ="date"
+                        <?php 
+                        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                          if(array_key_exists('date', $input_to_check)){
+                            echo 'value ="' . $input_to_check['date'] . '"'; 
+                          }
+                        }
+                          ?>>
+
+                          <?php
+                            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                              if(array_key_exists('date', $errors)){
+                                echo'<span class="help-inline">3' . $errors['event_name'] . '</span>';
+                              }
+                            }
+                          ?>
                       </div>
-              						<input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Create New Event»">
+              						<input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Create New Event»" name ="submit">
             				</fieldset>
           				</form>
           			</div>

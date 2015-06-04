@@ -1,12 +1,10 @@
 	<?php
-	
-
 	function post_event($form_array){
 
 				$date = (strip_tags(trim($form_array['date'])));
 				$event_name = (strip_tags(trim($form_array['event_name'])));
-				$user_id = 2; //This will be set using $_SESSION
-				$twilio = 5555555555; //This will be set ussing Twilio Api
+				$user_id = '2'; //This will be set using $_SESSION
+				$twilio = '5555555555'; //This will be set ussing Twilio Api
 
 				$temp = Core::getInstance();
 

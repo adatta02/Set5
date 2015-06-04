@@ -1,4 +1,6 @@
-<?php require_once('bootstrap.php');
+<?php 
+  require_once('bootstrap.php');
+
   if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
     $input_to_check = $_POST;
     $errors = validate_user($input_to_check);
@@ -82,7 +84,11 @@
                           <?php if($_SERVER["REQUEST_METHOD"] == "POST"){ echo 'value="' . $input_to_check['user'] . '"';} ?>>
 
                           <?php
-                            echo'<span class="help-inline">' . $errors['user'] . '</span>';
+                            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            if(array_key_exists('user', $errors)){
+                              echo'<span class="help-inline">' . $errors['user'] . '</span>';
+                            }
+                          }
                           ?>
 
                         </div>
@@ -91,7 +97,11 @@
                           <?php if ($_SERVER["REQUEST_METHOD"] == "POST"){echo 'value ="' . $input_to_check['email'] . '"'; }?>>
 
                           <?php
-                            echo'<span class="help-inline">' . $errors['email'] . '</span>';
+                            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                              if(array_key_exists('email', $errors)){
+                                echo'<span class="help-inline">' . $errors['email'] . '</span>';
+                              }
+                            }
                           ?>
 
             						</div>
@@ -101,7 +111,11 @@
                           <?php if ($_SERVER["REQUEST_METHOD"] == "POST"){echo 'value ="' . $input_to_check['password'] . '"'; }?>>
 
                           <?php
-                            echo'<span class="help-inline">' . $errors['password'] . '</span>';
+                             if($_SERVER["REQUEST_METHOD"] == "POST"){
+                             if(array_key_exists('password', $errors)){
+                              echo'<span class="help-inline">' . $errors['password'] . '</span>';
+                            }
+                          }
                           ?>
 
                         </div>
