@@ -1,7 +1,5 @@
 	<?php
-	include('text_app_connect/mysql_connect.php');
-
-	function post_data($form_array){
+	function post_user($form_array){
 
 				$user = (strip_tags(trim($form_array['user'])));
 				$email = $form_array['email'];
@@ -26,8 +24,7 @@
 				}
 	}
 	
-
-	function validate_data($form_array){
+	function validate_user($form_array){
 
 		if(isset($form_array['submit'])){
 
@@ -69,5 +66,4 @@
 		}
 			return($error_array);
 	}
-
 	?>

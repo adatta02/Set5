@@ -1,7 +1,18 @@
-<?php require_once ('create_user.php');
-  $_SESSION['$current_user'] = "TEST VALUE";
-  require_once('logout.php');
-  print_r($_SESSION);
+<?php require_once('bootstrap.php');
+  if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
+    $input_to_check = $_POST;
+    $errors = validate_user($input_to_check);
+
+    if(empty($errors)){
+      post_user($input_to_check);
+      $message = "You have successfully been added!";
+      echo'<h1>' . $message . '</h1>';
+      }
+      else{
+        $message = "Error adding information to database!";
+        echo'<h1>' . $message . '</h1>';
+        }
+  }    
 ?>
 
 <html>
@@ -59,22 +70,7 @@
                   <!--Creating Div for message output-->
                   <div id ="message-output">
 
-                    <?php  
-                    if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
-                      $input_to_check = $_POST;
-                      $errors = validate_data($input_to_check);
-
-                      if(empty($errors)){
-                        post_data($input_to_check);
-                        $message = "You have successfully been added!";
-                         echo'<h1>' . $message . '</h1>';
-                      }
-                      else{
-                        $message = "Error adding information to database!";
-                        echo'<h1>' . $message . '</h1>';
-                      }
-                    }    
-                    ?>
+                    
 
                   </div>
                   <!--End of message output div-->

@@ -1,4 +1,22 @@
-<?php require_once 'header.php'; ?>
+<?php 
+require_once'bootstrap.php';
+require_once 'header.php'; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
+    $input_to_check = $_POST;
+    $errors = validate_event($input_to_check);
+
+    if(empty($errors)){
+        post_event($input_to_check);
+        $message = "You have successfully been added!";
+        echo'<h1>' . $message . '</h1>';
+    }
+    else{
+      $message = "Error adding information to database!";
+      echo'<h1>' . $message . '</h1>';
+    }
+}                      
+?>
 
 <body>
 		<div class ="container-full">
@@ -26,14 +44,37 @@
           				Schedule Event
           			</h1>
           			<br><br><br>
+
           			<div class="panel-body">
+                     <!--Creating Div for message output-->
+                  <div id ="message-output">
+                    <?php
+                      if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
+                        $input_to_check = $_POST;
+                        $errors = validate_event($input_to_check);
+
+                        if(empty($errors)){
+                          post_event($input_to_check);
+                          $message = "You have successfully been added!";
+                          echo'<h1>' . $message . '</h1>';
+                        }
+                        else{
+                          $message = "Error adding information to database!";
+                          echo'<h1>' . $message . '</h1>';
+                        }
+                      } 
+                    ?>
+
+                  </div>
+                  <!--End of message output div-->
           				<form accept-charset="UTF-8" role="form" class="col-lg-12">
           					<fieldset>
-            						<input class="form-control input-lg" title="text input box for event name" placeholder="Event Name" type="text">
-            						<br><br>
-            						<input class="form-control input-lg" title="text input box for date" placeholder="Event Date (m/d/y)" type="text">
-
-            						<br><br>
+                      <div class = "form-group">
+            						<input class="form-control input-lg" title="text input box for event name" placeholder="Event Name" type="text" name ="event_name">
+            					</div>
+                      <div class ="form-group">
+            						<input class="form-control input-lg" title="text input box for date" placeholder="Event Date YYYY-MM-DD" type="text" name ="date">
+                      </div>
               						<input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Create New Event»">
             				</fieldset>
           				</form>

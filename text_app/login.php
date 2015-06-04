@@ -1,4 +1,4 @@
-<?php require_once ('validate_user.php');?>
+<?php require_once ('bootstrap.php');?>
 <?php require_once 'header.php';?>
 <body>
 		<div class ="container-full">
@@ -17,7 +17,6 @@
                               if(isset($_SESSION['$current_user'])){
                                 echo '<li><a href="/user_events.php">My Events</a></li>';
                                 echo'<li> class="navbar-btn"><a href="/index.php" class="btn btn-default">Log out</a></li>';
-                                print_r($_SESSION);
                               }
                             ?>
 
