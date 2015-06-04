@@ -1,7 +1,8 @@
-
-<?php require_once ('create_user.php');?>
-
-<?php require_once('logout.php');?>
+<?php require_once ('create_user.php');
+  $_SESSION['$current_user'] = "TEST VALUE";
+  require_once('logout.php');
+  print_r($_SESSION);
+?>
 
 <html>
 

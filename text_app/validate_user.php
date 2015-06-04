@@ -45,6 +45,7 @@ function store_cur_session($cur_user){
 	$results = $stmt->fetchAll();
 
 	$_SESSION['$current_user'] = $results[0][0];
+	print_r($results);
 }
 
 
