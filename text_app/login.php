@@ -43,7 +43,7 @@
                       $errors = validate_input($input_to_check);
 
                       if(empty($errors)){
-                        user_existence($input_to_check);
+                        login_user_existence($input_to_check);
                       }
                     }    
                     ?>

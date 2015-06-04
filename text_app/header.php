@@ -11,6 +11,7 @@
     <!--css style sheets-->
     <link href = "../css/bootstrap.min.css" rel = "stylesheet">
     <link href = "../css/login.css" rel = "stylesheet">
+    <link href = "../css/user_events.css" rel = "stylesheet">
 
     <!--javascript and jquery-->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>

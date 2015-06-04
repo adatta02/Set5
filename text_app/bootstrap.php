@@ -5,4 +5,5 @@ include("text_app_connect/mysql_connect.php");
 include("create_user.php");
 include("create_event.php");
 include("validate_user.php");
+include("display_events.php");
 ?>

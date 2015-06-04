@@ -1,4 +1,7 @@
-<?php require_once 'header.php'; ?>
+<?php 
+    require_once 'bootstrap.php';
+    require_once 'header.php'; 
+?>
 
 <body>
 		<div class ="container-full">
@@ -19,27 +22,35 @@
             </div>
             <!--/navbar-->
             <!--row-->
+            
             <div class="row">
-              <div class="col-lg-12 text-center v-center">
+              <div class="col-lg-12 v-center">
+                <h1 class="text-center"> My Events </h1>
+              </div>
+            </div>
 
-                <h1> My Events </h1>
-
+            <div class="row">
                 <div class ="col-md-6">
-                    <h1>Past Events</h1>
-                    <div class ="past-events">  
-                        
-                    </div>
+                    <h1 class="text-center">Past Events</h1>
+            
+                    <ol class="list-group">
+                        <?php
+                            populate_past();
+                        ?>
+                    </ol>
+                    
                 </div>
 
                 <div class ="col-md-6">
-                    <h1>Upcomming Events</h1>
-                    <div class ="future-events">  
-                        
-                    </div>
+                    <h1 class="text-center">Upcomming Events</h1>
+                    
+                    <ol class = "text-center centered-number">
+                        <?php
+                            populate_future();
+                        ?>
+                    </ol>
+                    
                 </div>
-      		    </div>
-            </div> 
-      		<!-- /row -->
-         </div>           
+            </div>
     </body>
 </html>
