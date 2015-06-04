@@ -6,10 +6,15 @@
     $errors = validate_user($input_to_check);
 
     if(empty($errors)){
-      post_user($input_to_check);
-      $message = "You have successfully been added!";
-      echo'<h1>' . $message . '</h1>';
+      if(user_existence($input_to_check) == false){
+          post_user($input_to_check);
+          $message = "You have successfully been added!";
+          echo'<h1>' . $message . '</h1>';
       }
+      else{
+        echo'Username in use';
+      }
+    }
       else{
         $message = "Error adding information to database!";
         echo'<h1>' . $message . '</h1>';

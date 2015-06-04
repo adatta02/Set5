@@ -1,5 +1,5 @@
 <?php
-function user_existence ($form_array){
+function login_user_existence ($form_array){
 
 				$user = (strip_tags(trim($form_array['user'])));
 				$password = (strip_tags(trim($form_array['password'])));
@@ -20,9 +20,11 @@ function user_existence ($form_array){
 				if($results[0][0] == 1){
 
 					store_cur_session($user);
+					return true;
 				}
 				else{
 					echo'No User exists with this name';
+					return flase;
 				}
 				
 

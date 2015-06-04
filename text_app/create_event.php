@@ -1,4 +1,34 @@
-	<?php
+<?php
+	function event_existence ($form_array){
+
+				$event_name = (strip_tags(trim($form_array['event_name'])));
+				$event_date = (strip_tags(trim($form_array['date'])));
+				$user = '2';
+
+
+				$temp = Core::getInstance();
+
+				$stmt = $temp->dbh->prepare("SELECT Count(*) FROM events WHERE event_name = :name AND event_date = :edate AND user_id = :user ");
+
+				$stmt->bindParam(':name', $event_name);
+				$stmt->bindParam(':edate', $event_date);
+				$stmt->bindParam('user', $user);
+
+				$stmt->execute();
+
+				$results = $stmt->fetchAll();
+				
+				//This means that the user/password combo exists inside the database (and only once): They've Logged in
+				if($results[0][0] != 0){
+
+					echo'Event already exists';
+					return(true);
+				}
+				else{
+					return false;
+				}
+	}
+
 	function post_event($form_array){
 
 				$date = (strip_tags(trim($form_array['date'])));
@@ -60,5 +90,4 @@
 			return($error_array);
 		}
 	}
-
-	?>
+?>

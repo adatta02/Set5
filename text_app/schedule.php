@@ -7,7 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
     $errors = validate_event($input_to_check);
 
     if(empty($errors)){
-        post_event($input_to_check);
+        if(event_existence($input_to_check) == false){
+          post_event($input_to_check);
+        }
     }
     else{
       $message = "Error adding information to database!";

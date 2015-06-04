@@ -1,4 +1,25 @@
 	<?php
+
+	function user_existence ($form_array){
+
+				$user = (strip_tags(trim($form_array['user'])));
+
+				$temp = Core::getInstance();
+
+				$stmt = $temp->dbh->prepare("SELECT Count(*) FROM users WHERE user_name = :username");
+
+				$stmt->bindParam(':username', $user);
+
+				$stmt->execute();
+
+				$results = $stmt->fetchAll();
+				
+				//This means that the user/password combo exists inside the database (and only once): They've Logged in
+				if($results[0][0] !== 0){
+					return true;
+				}
+	}
+
 	function post_user($form_array){
 
 				$user = (strip_tags(trim($form_array['user'])));

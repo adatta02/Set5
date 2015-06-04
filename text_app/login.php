@@ -75,7 +75,7 @@
                           <?php
                             if($_SERVER["REQUEST_METHOD"] == "POST"){
                               if(array_key_exists('password', $errors)){
-                                echo'<span class="help-inline">' . $errors['password'] . '</span>';
+                                echo'<span class="help-inline">3' . $errors['password'] . '</span>';
                               }
                             }
                           ?>
