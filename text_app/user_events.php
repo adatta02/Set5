@@ -34,9 +34,14 @@
                     <h1 class="text-center">Past Events</h1>
             
                     <ol class="list-group">
+
                         <?php
-                            populate_past();
+                            extract(populate_past());
+                            foreach ($events as $event) {
+                                echo'<li class ="item"> Event Name: ' . $event['event_name']. ' Event Date: ' . $event['event_date'] . '</li>';
+                            }
                         ?>
+
                     </ol>
                     
                 </div>
@@ -45,9 +50,14 @@
                     <h1 class="text-center">Upcomming Events</h1>
                     
                     <ol class = "text-center centered-number">
+
                         <?php
-                            populate_future();
+                            extract(populate_future());
+                            foreach ($events as $event) {
+                                echo'<li class ="item"> Event Name: ' . $event['event_name']. ' Event Date: ' . $event['event_date'] . '</li>';
+                            }
                         ?>
+                        
                     </ol>
                     
                 </div>

@@ -15,14 +15,9 @@ function populate_past(){
 				$stmt->execute();
 
 				$results = $stmt->fetchAll();
-				//print_r($results);
+				print_r($results);
 
-				foreach ($results as $value) {
-					echo'<li class ="item"> Event Name: ' . $value['event_name']. ' Event Date: ' . $value['event_date'] . '</li>';
-				}
-				
-				
-
+				return ['events' => $results];
 }
 
 function populate_future(){
@@ -42,9 +37,7 @@ function populate_future(){
 				$results = $stmt->fetchAll();
 				//print_r($results);
 
-				foreach ($results as $value) {
-					echo'<li class ="item"> Event Name: ' . $value['event_name']. ' Event Date: ' . $value['event_date'] . '</li>';
-				}
+				return ['events' => $results];
 
 }
 ?>
