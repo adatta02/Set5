@@ -1,4 +1,3 @@
-<?php require_once ('bootstrap.php');?>
 <?php require_once ('header.php');?>
 <body>
 		<div class ="container-full">
@@ -11,7 +10,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/index.php">Home</a></li>
+                            <li><a href="/index">Home</a></li>
 
                             <?php
                               if(isset($_SESSION['$current_user'])){

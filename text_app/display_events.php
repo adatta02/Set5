@@ -17,7 +17,7 @@ function populate_past(){
 				$results = $stmt->fetchAll();
 				print_r($results);
 
-				return ['events' => $results];
+				return $results;
 }
 
 function populate_future(){
@@ -37,7 +37,7 @@ function populate_future(){
 				$results = $stmt->fetchAll();
 				//print_r($results);
 
-				return ['events' => $results];
+				return $results;
 
 }
 ?>

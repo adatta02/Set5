@@ -23,7 +23,6 @@ function login_user_existence ($form_array){
 					return true;
 				}
 				else{
-					echo'No User exists with this name';
 					return flase;
 				}
 				

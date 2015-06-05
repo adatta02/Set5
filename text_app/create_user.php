@@ -12,10 +12,12 @@
 
 				$stmt->execute();
 
-				$results = $stmt->fetchAll();
-				
-				//This means that the user/password combo exists inside the database (and only once): They've Logged in
-				if($results[0][0] !== 0){
+				$results = $stmt->fetchAll();				
+				//This means that the user/password combo exists inside the database (and only once)
+				if($results[0][0] == 0){
+					return false;
+				}
+				else{
 					return true;
 				}
 	}
@@ -41,7 +43,6 @@
 				if($result == true){ //Ask Ashish if this is ok
 				}
 				else{
-					echo 'Username already exists';
 				}
 	}
 	
@@ -85,6 +86,6 @@
 				}
 			}
 		}
-			return($error_array);
+			return $error_array;
 	}
 	?>

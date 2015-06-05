@@ -1,4 +1,6 @@
 <?php
+require_once('bootstrap.php'); //Giving mysql_connect access to all of my logic
+
 
 class Config
 {
@@ -37,6 +39,12 @@ class Core
         $password = Config::read('db.password');
 
         $this->dbh = new PDO($dsn, $user, $password);
+    }
+
+    public static function render($filename, $params = []) //used to render my php files pay attention params in index.php
+    {
+        extract($params);
+        require_once($filename);
     }
 
     public static function getInstance()

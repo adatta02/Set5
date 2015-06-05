@@ -1,8 +1,4 @@
-<?php 
-    require_once 'bootstrap.php';
-    require_once 'header.php'; 
-?>
-
+<?php require_once 'header.php';?>
 <body>
 		<div class ="container-full">
             <!--navbar-->
@@ -14,7 +10,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/schedule.php">Create New Event</a>
+                            <li><a href="/schedule">Create New Event</a>
                             </li>
                         </ul>
                     </div>
@@ -36,8 +32,7 @@
                     <ol class="list-group">
 
                         <?php
-                            extract(populate_past());
-                            foreach ($events as $event) {
+                            foreach ($pastEvents as $event) {
                                 echo'<li class ="item"> Event Name: ' . $event['event_name']. ' Event Date: ' . $event['event_date'] . '</li>';
                             }
                         ?>
@@ -52,8 +47,7 @@
                     <ol class = "text-center centered-number">
 
                         <?php
-                            extract(populate_future());
-                            foreach ($events as $event) {
+                            foreach ($futureEvents as $event) {
                                 echo'<li class ="item"> Event Name: ' . $event['event_name']. ' Event Date: ' . $event['event_date'] . '</li>';
                             }
                         ?>

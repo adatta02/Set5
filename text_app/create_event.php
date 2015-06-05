@@ -20,8 +20,6 @@
 				
 				//This means that the user/password combo exists inside the database (and only once): They've Logged in
 				if($results[0][0] != 0){
-
-					echo'Event already exists';
 					return true;
 				}
 				else{
@@ -50,9 +48,7 @@
 
 				if($result == true){ //Ask Ashish if this is ok
 				}
-				else{
-					echo 'Username already exists';
-				}
+
 	}
 	
 
