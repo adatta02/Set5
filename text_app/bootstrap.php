@@ -5,4 +5,6 @@ include("create_user.php");
 include("create_event.php");
 include("validate_user.php");
 include("display_events.php");
+include("User_class.php");
+include("Event_class.php");
 ?>
