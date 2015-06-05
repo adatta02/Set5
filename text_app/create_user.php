@@ -2,7 +2,7 @@
 
 	function user_existence ($form_array){
 
-				$user = (strip_tags(trim($form_array['user'])));
+				$user = $form_array['user'];
 
 				$temp = Core::getInstance();
 
@@ -22,9 +22,9 @@
 
 	function post_user($form_array){
 
-				$user = (strip_tags(trim($form_array['user'])));
+				$user = $form_array['user'];
 				$email = $form_array['email'];
-				$password = (strip_tags(trim($form_array['password'])));
+				$password = $form_array['password'];
 
 
 				$temp = Core::getInstance();
@@ -47,9 +47,9 @@
 	
 	function validate_user($form_array){
 
-		if(isset($form_array['submit'])){
+		if(array_key_exists('submit', $form_array)){
 
-			$error_array = array();
+			$error_array = [];
 
 			if(empty($form_array['user'])){
 				$error_array['user'] = 'missing username data from form';

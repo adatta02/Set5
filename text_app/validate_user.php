@@ -1,8 +1,8 @@
 <?php
 function login_user_existence ($form_array){
 
-				$user = (strip_tags(trim($form_array['user'])));
-				$password = (strip_tags(trim($form_array['password'])));
+				$user = $form_array['user'];
+				$password = $form_array['password'];
 
 
 				$temp = Core::getInstance();
@@ -32,8 +32,6 @@ function login_user_existence ($form_array){
 
 function store_cur_session($cur_user){
 
-	//$test_user = 'Phil';
-	//echo $cur_user;
 	$temp = Core::getInstance();
 
 	$stmt = $temp->dbh->prepare("SELECT id FROM users WHERE user_name = :username");
@@ -45,13 +43,12 @@ function store_cur_session($cur_user){
 	$results = $stmt->fetchAll();
 
 	$_SESSION['$current_user'] = $results[0]['id'];
-	//var_dump($results);
 }
 
 
 function validate_input($form_array){
 
-		if(isset($form_array['submit'])){
+		if(array_key_exists('submit', $form_array)){
 
 			$error_array = array();
 
@@ -73,6 +70,6 @@ function validate_input($form_array){
 				}
 			}
 		}
-			return($error_array);
+			return $error_array;
 	}
 ?>

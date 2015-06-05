@@ -1,8 +1,8 @@
 <?php
 	function event_existence ($form_array){
 
-				$event_name = (strip_tags(trim($form_array['event_name'])));
-				$event_date = (strip_tags(trim($form_array['date'])));
+				$event_name = $form_array['event_name'];
+				$event_date = $form_array['date'];
 				$user = '2';
 
 
@@ -22,7 +22,7 @@
 				if($results[0][0] != 0){
 
 					echo'Event already exists';
-					return(true);
+					return true;
 				}
 				else{
 					return false;
@@ -31,8 +31,8 @@
 
 	function post_event($form_array){
 
-				$date = (strip_tags(trim($form_array['date'])));
-				$event_name = (strip_tags(trim($form_array['event_name'])));
+				$date = $form_array['date'];
+				$event_name = $form_array['event_name'];
 				$user_id = '2'; //This will be set using $_SESSION
 				$twilio = '5555555555'; //This will be set ussing Twilio Api
 
@@ -58,9 +58,9 @@
 
 	function validate_event($form_array){
 
-		if(isset($form_array['submit'])){
+		if(array_key_exists('submit', $form_array)){
 
-			$error_array = array();
+			$error_array = [];
 
 			if(empty($form_array['event_name'])){
 				$error_array['event_name'] = 'missing event name data from form';
@@ -87,7 +87,7 @@
 					} 
 				}
 			}		
-			return($error_array);
+			return $error_array;
 		}
 	}
 ?>
