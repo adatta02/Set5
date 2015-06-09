@@ -1,9 +1,11 @@
 <?php
+phpinfo();
 session_start();
 include("text_app_connect/mysql_connect.php");
 include('User_class.php');
 include('Event_class.php');
 include('Event_Table.php');
+//session_start();
 
 $route = $_SERVER['REQUEST_URI'];
 
