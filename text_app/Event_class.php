@@ -2,18 +2,18 @@
 	class Event
 	{
 		public function set_event_date($value){
-			$this->username = $value;
+			$this->event_date = $value;
 		}
 
 		public function set_twilio_number($value){
-			$this->email = $value;
+			$this->twilio_number = $value;
 		}
 
 		public function set_user_id($value){
-			$this->password = $value;
+			$this->user_id = $value;
 		}
 		public function set_event_name($value){
-			$this->id = $value;
+			$this->event_name = $value;
 		}
 
 		public function set_id($value){
@@ -40,45 +40,97 @@
 			return $this->id;
 		}
 
-		public function populate_past(){
-			date_default_timezone_set('America/New_York');
-			$today = date("Y-m-d");
-			$user = '2'; //This will be set using $_SESSION 
+		/////////////////////These functions are used to create new events/////////////////////////////////////
 
-			$temp = Core::getInstance();
+		public function event_existence ($form_array){
 
-			$stmt = $temp->dbh->prepare("SELECT * FROM events WHERE user_id = :cur_user AND event_date < :today");
+				$event_name = $form_array['event_name'];
+				$event_date = $form_array['date'];
+				$user = $_SESSION['current_user']; 
 
-				$stmt->bindParam(':cur_user', $user);
-				$stmt->bindParam(':today', $today);
 
-				$stmt->execute();
+				$temp = Core::getInstance();
 
-				$results = $stmt->fetchAll();
-				print_r($results);
+				$stmt = $temp->dbh->prepare("SELECT Count(*) FROM events WHERE event_name = :name AND event_date = :edate AND user_id = :user ");
 
-				return $results;
-		}
-
-		public function populate_future(){
-			date_default_timezone_set('America/New_York');
-			$today = date("Y-m-d");
-			$user = '2';
-
-			$temp = Core::getInstance();
-
-			$stmt = $temp->dbh->prepare("SELECT * FROM events WHERE user_id = :cur_user AND event_date > :today");
-
-				$stmt->bindParam(':cur_user', $user);
-				$stmt->bindParam(':today', $today);
+				$stmt->bindParam(':name', $event_name);
+				$stmt->bindParam(':edate', $event_date);
+				$stmt->bindParam('user', $user);
 
 				$stmt->execute();
 
 				$results = $stmt->fetchAll();
-				//print_r($results);
+				
+				//This means that the user/password combo exists inside the database (and only once): They've Logged in
+				if($results[0][0] != 0){
+					return true;
+				}
+				else{
+					return false;
+				}
+	}
 
-				return $results;
+	public function post_event($form_array){
+
+				$date = $form_array['date'];
+				$event_name = $form_array['event_name'];
+				$user_id = $_SESSION['current_user']; 
+				$twilio = '5555555555'; //This will be set ussing Twilio Api
+
+				$temp = Core::getInstance();
+
+				$stmt = $temp->dbh->prepare("INSERT INTO events (event_date, twilio_number, user_id, event_name) VALUES (:edate, :twilio, :user_id, :event_name)");
+
+				$stmt->bindParam(':edate', $date);
+				$stmt->bindParam(':twilio', $twilio); 
+				$stmt->bindParam(':user_id', $user_id);
+				$stmt->bindParam(':event_name', $event_name);
+
+				$result = $stmt->execute();
+
+
+				if($result == true){ //Ask Ashish if this is ok
+				}
+
+	}
+	
+
+	public function validate_event($form_array){
+
+		if(array_key_exists('submit', $form_array)){
+
+			$error_array = [];
+
+			if(empty($form_array['event_name'])){
+				$error_array['event_name'] = 'missing event name data from form';
+			}
+			else{
+				if (strlen(trim($form_array['event_name']) > 30)){
+					$error_array['event_name'] = 'event name input to long';	
+				}
+			}
+
+			if(empty($form_array['date'])){
+				$error_array['date'] = 'missing date data from form';
+			}
+			else{
+				$temp = trim($form_array['date']);
+
+				if (strlen($temp) > 30){
+					$error_array['date'] = 'date input to long';	
+				}
+				else{
+					$date_regex = '/^(19|20)\d\d[\-\/.](0[1-9]|1[012])[\-\/.](0[1-9]|[12][0-9]|3[01])$/';
+					if (!preg_match($date_regex, $temp)) {
+    				$error_array['date'] = 'Event date does not match the YYYY-MM-DD required format';
+					} 
+				}
+			}		
+			return $error_array;
 		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		private $event_date;
 		private $twilio_number;

@@ -1,14 +1,13 @@
 <?php 
-require_once'bootstrap.php';
-require_once 'header.php'; 
+include('header.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
     $input_to_check = $_POST;
-    $errors = validate_event($input_to_check);
+    $errors = Event::validate_event($input_to_check);
 
     if(empty($errors)){
-        if(event_existence($input_to_check) == false){
-          post_event($input_to_check);
+        if(Event::event_existence($input_to_check) == false){
+          Event::post_event($input_to_check);
         }
     }
     else{
@@ -30,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
 
-                            <li><a href="user_events.php">My Events</a>
+                            <li><a href="/user_events">My Events</a>
                             </li>
                         </ul>
                     </div>
@@ -39,19 +38,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
             <!--/navbar-->
             <!--row-->
             <div class="row">
-        		<div class="col-lg-12 text-center v-center">
+        		  <div class="col-lg-12 text-center v-center">
           			<h1>
           				Schedule Event
           			</h1>
-          			<br><br><br>
+          		</div>
+            </div>
 
+            <div class="row">
+              <div class="col-md-4"></div>
+
+
+              <div class="col-md-4">
           			<div class="panel-body">
-                     <!--Creating Div for message output-->
-                  <div id ="message-output">
-                    
-
-                  </div>
-                  <!--End of message output div-->
+                     
           				<form accept-charset="UTF-8" role="form" class="col-lg-12" action="" method ="post">
           					<fieldset>
                       <div class = "form-group">
@@ -95,7 +95,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
           				</form>
           			</div>
         		</div>
-        
+            
+          <div class="col-md-4"></div>
+
       		</div> 
       		<!-- /row -->
          </div>           

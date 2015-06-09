@@ -1,5 +1,4 @@
 <?php
-	session_start();
-	unset($_SESSION['$current_user']);
-	//var_dump($_SESSION);
+	unset($_SESSION['current_user']);
+	header("Location: http://localhost:8000/");
 ?>

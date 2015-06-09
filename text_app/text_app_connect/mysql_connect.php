@@ -1,7 +1,4 @@
-<?php
-require_once('bootstrap.php'); //Giving mysql_connect access to all of my logic
-
-
+  <?php
 class Config
 {
     static $confArray;
@@ -56,8 +53,5 @@ class Core
         }
         return self::$instance;
     }
-
-    // others global functions
 }
-
 ?>

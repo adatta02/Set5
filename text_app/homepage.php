@@ -1,11 +1,12 @@
+
 <?php 
   if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
     $input_to_check = $_POST;
-    $errors = validate_user($input_to_check);
+    $errors = User::validate_user($input_to_check);
 
     if(empty($errors)){
-      if(user_existence($input_to_check) == false){
-          post_user($input_to_check);
+      if(User::user_existence($input_to_check) == false){
+          User::post_user($input_to_check);
           $message = "You have successfully been added!";
           echo'<h1>' . $message . '</h1>';
       }
@@ -17,32 +18,9 @@
         $message = "Error adding information to database!";
         echo'<h1>' . $message . '</h1>';
         }
-  }    
-?>
-
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!--mobile friendly: -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--css style sheets-->
-    <link href = "css/bootstrap.min.css" rel = "stylesheet">
-    <link href = "css/index.css" rel = "stylesheet">
-
-    <!--javascript and jquery-->
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    <script src="js/bootstrap.js"></script>
-
-    <title>Texter</title>
-    
-</head>
-        
+  }  
+  include('header.php');  
+?>      
 <body>
 		<div class ="container-full">
             <!--navbar-->
@@ -54,8 +32,15 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/login">Login</a>
-                            </li>
+                            <li><a href="/login">Login</a></li>
+
+                            <?php
+                              if(isset($_SESSION['current_user'])){
+                                echo '<li><a href="/user_events">My Events</a></li>';
+                                echo'<li> <a href="/logout">Log out</a></li>';
+                              }
+                            ?>
+
                         </ul>
                     </div>
                 </div>
@@ -63,23 +48,22 @@
             <!--/navbar-->
             <!--row-->
             <div class="row">
-        		<div class="col-lg-6 text-center v-center">
+        		  <div class="col-md-12 text-center v-center">
             
-          			<h1>
-          				Welcome to FIGURE OUT NAME, the simplest way to host kickass parties
-          				with a broken doorbell.
-          			</h1>
-          			<br><br><br>
-          			<div class="panel-body">
+          			<h2>
+          				Welcome to FIGURE OUT NAME.
+          			</h2>
+          	 </div>
+            </div>
 
-                  <!--Creating Div for message output-->
-                  <div id ="message-output">
 
-                    
+            <div class ="row">
+                <div class ="col-md-4"></div> <!--SPACING-->
 
-                  </div>
-                  <!--End of message output div-->
-                  
+
+                <div class ="col-md-4 text-center center-form">
+                  <h4>Create an account if you are a new user.</h4>
+          			<div class="panel-body"> 
           				<form accept-charset="UTF-8" action="" method ="post" role="form" class="form-horizontal">
           					<fieldset>
                         <div class ="form-group">
@@ -122,15 +106,16 @@
                           ?>
 
                         </div>
-              						<input class="btn btn-lg btn-success" type="submit" name ="submit" id="login" value="Create Account »">
+              						<input class="btn btn-default btn-lg btn-success" type="submit" name ="submit" id="login" value="Create Account »">
             				</fieldset>
           				</form>
                 
           			</div>
-              
-        		</div>
-        
-      		</div> 
+              </div>
+
+              <div class ="col-md-4"></div> <!--SPACING-->
+
+              </div>
       		<!-- /row -->
          </div>           
     </body>

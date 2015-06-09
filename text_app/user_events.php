@@ -1,4 +1,6 @@
-<?php require_once 'header.php';?>
+<?php 
+include('header.php');
+?>
 <body>
 		<div class ="container-full">
             <!--navbar-->
@@ -29,11 +31,11 @@
                 <div class ="col-md-6">
                     <h1 class="text-center">Past Events</h1>
             
-                    <ol class="list-group">
+                    <ol class="text-center centered-number">
 
                         <?php
                             foreach ($pastEvents as $event) {
-                                echo'<li class ="item"> Event Name: ' . $event['event_name']. ' Event Date: ' . $event['event_date'] . '</li>';
+                                echo'<li class ="item"> Event Name: ' . $event->get_event_name(). '   Event Date: ' . $event->get_event_date(). '</li>';
                             }
                         ?>
 
@@ -48,7 +50,7 @@
 
                         <?php
                             foreach ($futureEvents as $event) {
-                                echo'<li class ="item"> Event Name: ' . $event['event_name']. ' Event Date: ' . $event['event_date'] . '</li>';
+                                echo'<li class ="item"> Event Name: ' . $event->get_event_name(). '   Event Date: ' . $event->get_event_date() . '</li>';
                             }
                         ?>
                         

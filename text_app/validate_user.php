@@ -19,7 +19,7 @@ function login_user_existence ($form_array){
 				//This means that the user/password combo exists inside the database (and only once): They've Logged in
 				if($results[0][0] == 1){
 
-					store_cur_session($user);
+					store_cur_session($user); //Login
 					return true;
 				}
 				else{
@@ -41,7 +41,7 @@ function store_cur_session($cur_user){
 
 	$results = $stmt->fetchAll();
 
-	$_SESSION['$current_user'] = $results[0]['id'];
+	$_SESSION['current_user'] = $results[0]['id'];
 }
 
 

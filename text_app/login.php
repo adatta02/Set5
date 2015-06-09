@@ -1,4 +1,14 @@
-<?php require_once ('header.php');?>
+<?php  
+  if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
+    $input_to_check = $_POST;
+    $errors = User::validate_input($input_to_check);
+
+    if(empty($errors)){
+      User::login_user_existence($input_to_check);
+      }
+  }  
+  include('header.php');   
+  ?>
 <body>
 		<div class ="container-full">
             <!--navbar-->
@@ -10,12 +20,12 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/index">Home</a></li>
+                            <li><a href="/">Home</a></li>
 
                             <?php
-                              if(isset($_SESSION['$current_user'])){
-                                echo '<li><a href="/user_events.php">My Events</a></li>';
-                                echo'<li> class="navbar-btn"><a href="/index.php" class="btn btn-default">Log out</a></li>';
+                              if(isset($_SESSION['current_user'])){
+                                echo '<li><a href="/user_events">My Events</a></li>';
+                                echo'<li> <a href="/logout">Log out</a></li>';
                               }
                             ?>
 
@@ -24,30 +34,30 @@
                 </div>
             </div>
             <!--/navbar-->
+            
             <!--row-->
             <div class="row">
-        		<div class="col-lg-12 text-center v-center">
-          			<h1>
-          				Login
-          			</h1>
-          			<br><br><br>
-          			<div class="panel-body">
+        		  <div class="col-lg-12 text-center v-center">
+          			 <h1>
+          				  Login
+          			 </h1>
+              </div>
+            </div>
+            <!-- /row -->
 
-                  <!--Creating Div for message output-->
-                  <div id ="message-output">
 
-                    <?php  
-                    if ($_SERVER["REQUEST_METHOD"] == "POST"){ //check if form was submitted
-                      $input_to_check = $_POST;
-                      $errors = validate_input($input_to_check);
+            <!--row-->
+            <div class="row">
+              <div class="col-md-4"></div><!--SPACING-->
+                <div class="col-md-4 text-center">
+          			   <div class="panel-body">
 
-                      if(empty($errors)){
-                        login_user_existence($input_to_check);
-                      }
-                    }    
-                    ?>
+                    <!--Creating Div for message output-->
+                    <div id ="message-output">
 
-                  </div>
+                      
+
+                    </div>
                   <!--End of message output div-->
                   
                   <form accept-charset="UTF-8" action="" method ="post" role="form" class="form-horizontal">
@@ -65,7 +75,6 @@
                           ?>
 
                         </div>
-                        <div class ="form-group">
 
                         <div class ="form-group">
                           <input class="form-control input-lg" title="text input box for password" placeholder="Password" type="password" name ="password"
@@ -80,15 +89,15 @@
                           ?>
 
                         </div>
-                          <input class="btn btn-lg btn-success" type="submit" name ="submit" id="login" value="Login »">
+                          <input class="btn btn-lg btn-primary btn-success" type="submit" name ="submit" id="login" value="Login »">
                     </fieldset>
                   </form>
                 
-                </div>
-        		</div>
-        
-      		</div> 
+                </div> 
+        		</div> 
+            <div class="col-md-4"></div>
+          </div>
       		<!-- /row -->
-         </div>           
+          </div>         
     </body>
 </html>

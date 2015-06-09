@@ -1,5 +1,4 @@
-	<?php
-
+<?php
 	function user_existence ($form_array){
 
 				$user = $form_array['user'];
@@ -88,4 +87,4 @@
 		}
 			return $error_array;
 	}
-	?>
+?>
