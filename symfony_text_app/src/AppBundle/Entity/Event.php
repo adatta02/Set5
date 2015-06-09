@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="user")
+ * @ORM\Table(name="event")
  */
-class User
+class Event
 {
      /**
      * @ORM\Column(type="integer")
@@ -20,18 +20,17 @@ class User
     /**
      * @ORM\Column(type="string", length=30)
      */
-    private $userName;
+    private $eventName;
 
     /**
      * @ORM\Column(type="string", length=30)
      */
-    private $email;
+    private $userID;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="date", length=30)
      */
-    private $password;
-
+    private $date;
 
     /**
      * Get id
@@ -44,71 +43,71 @@ class User
     }
 
     /**
-     * Set userName
+     * Set eventName
      *
-     * @param string $userName
-     * @return User
+     * @param string $eventName
+     * @return Event
      */
-    public function setUserName($userName)
+    public function setEventName($eventName)
     {
-        $this->userName = $userName;
+        $this->eventName = $eventName;
 
         return $this;
     }
 
     /**
-     * Get userName
+     * Get eventName
      *
      * @return string 
      */
-    public function getUserName()
+    public function getEventName()
     {
-        return $this->userName;
+        return $this->eventName;
     }
 
     /**
-     * Set email
+     * Set userID
      *
-     * @param string $email
-     * @return User
+     * @param string $userID
+     * @return Event
      */
-    public function setEmail($email)
+    public function setUserID($userID)
     {
-        $this->email = $email;
+        $this->userID = $userID;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get userID
      *
      * @return string 
      */
-    public function getEmail()
+    public function getUserID()
     {
-        return $this->email;
+        return $this->userID;
     }
 
     /**
-     * Set password
+     * Set date
      *
-     * @param string $password
-     * @return User
+     * @param \DateTime $date
+     * @return Event
      */
-    public function setPassword($password)
+    public function setDate($date)
     {
-        $this->password = $password;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get password
+     * Get date
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getPassword()
+    public function getDate()
     {
-        return $this->password;
+        return $this->date;
     }
 }
