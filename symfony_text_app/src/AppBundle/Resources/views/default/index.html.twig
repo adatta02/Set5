@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
 <div class ="container-full">
             <!--navbar-->
             <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
@@ -43,21 +42,7 @@
                   <h4>Create an account if you are a new user.</h4>
           			<div class="panel-body"> 
           				<form accept-charset="UTF-8" action="" method ="post" role="form" class="form-horizontal">
-          					<fieldset>
-                        <div class ="form-group">
-                          <input class="form-control input-lg" title="text input box for username" placeholder="Username" type="text" name ="user" 
-                     
-                        </div>
-                        	<div class ="form-group">
-            					<input class="form-control input-lg" title="text input box for email" placeholder="Email" type="text" name = "email"
-            				</div>
-                        </div>
-
-                        <div class ="form-group">
-            				<input class="form-control input-lg" title="text input box for password" placeholder="Password" type="password" name ="password"
-                        </div>
-              				<input class="btn btn-default btn-lg btn-success" type="submit" name ="submit" id="login" value="Create Account »">
-            				</fieldset>
+          					{{ form_widget(form)}}
           				</form>
                 
           			</div>
