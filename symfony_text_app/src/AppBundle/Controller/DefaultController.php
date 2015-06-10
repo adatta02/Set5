@@ -29,7 +29,7 @@ class DefaultController extends Controller
                 $this->getDoctrine()->getManager()->persist($temp_user);
                 $this->getDoctrine()->getManager()->flush();
 
-                return $this->redirectToRoute('/');
+                return $this->redirectToRoute('homepage');
             }
 
         }
@@ -45,6 +45,37 @@ class DefaultController extends Controller
     public function loginAction(Request $request)
     {
         return [];
+    }
+
+    /**
+     * @Route("/events", name="user_events")
+     * @Template
+     */
+    public function eventsAction(Request $request){
+        return [];
+    }
+
+    /**
+     * @Route("/newevent", name="create_event")
+     * @Template
+     */
+    public function neweventAction(Request $request){
+        $temp_event = new Event();
+
+        $form = $this->createForm(new NewuserType(), $temp_event);
+
+        if( $request->isMethod("POST") ){
+            $form->handleRequest( $request );
+
+            if( $form->isValid() ){
+                $this->getDoctrine()->getManager()->persist($temp_event);
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('user_events');
+            }
+
+        }
+        return ["form" => $form->createView()];
     }
     
 }

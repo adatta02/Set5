@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -19,16 +20,39 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Type(
+     *     type="string",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 30,
+     *      minMessage = "Your Email must be at least {{ limit }} characters long",
+     *      maxMessage = "Your Email cannot be longer than {{ limit }} characters"
+     * )
      */
     private $eventName;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      */
     private $userID;
 
     /**
+     * @ORM\Column(type="integer", length=30)
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     */
+    private $twilio_number;
+
+    /**
      * @ORM\Column(type="date", length=30)
+     * @Assert\Date()
      */
     private $date;
 
@@ -109,5 +133,28 @@ class Event
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set twilio_number
+     *
+     * @param \int $twilioNumber
+     * @return Event
+     */
+    public function setTwilioNumber(\int $twilioNumber)
+    {
+        $this->twilio_number = $twilioNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get twilio_number
+     *
+     * @return \int 
+     */
+    public function getTwilioNumber()
+    {
+        return $this->twilio_number;
     }
 }

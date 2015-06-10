@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-<div class ="container-full">
+	{% block body %}
+		<div class ="container-full">
             <!--navbar-->
             <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
                 <div class="container-fluid">
@@ -11,11 +11,9 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/login">Login</a></li>
 
-   								<li><a href="{{url("user_events")}}">My Events</a></li>
-                                <li> <a href="/logout">Log out</a></li>
-
+                            <li><a href="{{url("user_events")}}">My Events</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -23,34 +21,29 @@
             <!--/navbar-->
             <!--row-->
             <div class="row">
-        		  <div class="col-md-12 text-center v-center">
-            
-          			<h2>
-          				Welcome to FIGURE OUT NAME.
-          			</h2>
-          	 </div>
+        		  <div class="col-lg-12 text-center v-center">
+          			<h1>
+          				Schedule Event
+          			</h1>
+          		</div>
             </div>
 
+            <div class="row">
+              <div class="col-md-4"></div>
 
-            <div class ="row">
-                <div class ="col-md-4"></div> <!--SPACING-->
 
-
-                <div class ="col-md-4 text-center center-form">
-                  <h4>Create an account if you are a new user.</h4>
-          			<div class="panel-body"> 
-          				<form accept-charset="UTF-8" action="" method ="post" role="form" class="form-horizontal">
+              <div class="col-md-4">
+          			<div class="panel-body">
+                     
+          				<form accept-charset="UTF-8" role="form" class="col-lg-12" action="" method ="post">
           					{{ form_widget(form)}}
           				</form>
-                
           			</div>
-              </div>
+        		</div>
+            
+          <div class="col-md-4"></div>
 
-              <div class ="col-md-4"></div> <!--SPACING-->
-
-              </div>
+      		</div> 
       		<!-- /row -->
-         </div>         
-
-
-{% endblock %}
+         </div>           
+	{% endblock %}	
