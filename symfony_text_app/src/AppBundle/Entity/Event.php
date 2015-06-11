@@ -44,7 +44,7 @@ class Event
     private $userID;
 
     /**
-     * @ORM\Column(type="integer", length=30)
+     * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank()
      * @Assert\NotNull()
      */
@@ -135,13 +135,14 @@ class Event
         return $this->date;
     }
 
+
     /**
      * Set twilio_number
      *
-     * @param \int $twilioNumber
+     * @param string $twilioNumber
      * @return Event
      */
-    public function setTwilioNumber(\int $twilioNumber)
+    public function setTwilioNumber($twilioNumber)
     {
         $this->twilio_number = $twilioNumber;
 
@@ -151,7 +152,7 @@ class Event
     /**
      * Get twilio_number
      *
-     * @return \int 
+     * @return string 
      */
     public function getTwilioNumber()
     {

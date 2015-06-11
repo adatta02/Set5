@@ -6,7 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Form\Type\NewuserType;
+use AppBundle\Form\Type\UserType;
+use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\Event;
 use AppBundle\Entity\User;
 
@@ -20,7 +21,7 @@ class DefaultController extends Controller
     {
         $temp_user = new User();
 
-        $form = $this->createForm(new NewuserType(), $temp_user);
+        $form = $this->createForm(new UserType(), $temp_user);
 
         if( $request->isMethod("POST") ){
             $form->handleRequest( $request );
@@ -62,7 +63,7 @@ class DefaultController extends Controller
     public function neweventAction(Request $request){
         $temp_event = new Event();
 
-        $form = $this->createForm(new NewuserType(), $temp_event);
+        $form = $this->createForm(new EventType(), $temp_event);
 
         if( $request->isMethod("POST") ){
             $form->handleRequest( $request );

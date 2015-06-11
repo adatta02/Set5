@@ -5,25 +5,24 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
-class NewuserType extends AbstractType
+class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('eventName')
-            ->add('userID')
-            ->add('date', array(
+            ->add('user_Id')
+            ->add('date', 'date', array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
-                'format' => 'yyyy-MM-dd',
-                'placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
+                'format' => 'yyyy-MM-dd'))
             ->add('twilioNumber')
-            ->add('save', 'submit')
+            ->add('schedule event', 'submit')
         ;
     }
 
     public function getName()
     {
-        return 'task';
+        return 'new_event_form';
     }
 }

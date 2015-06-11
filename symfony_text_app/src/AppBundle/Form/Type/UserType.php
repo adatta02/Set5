@@ -5,13 +5,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
-class NewuserType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('userName')
-            ->add('email')
+            ->add('email', 'email')
             ->add('password')
             ->add('save', 'submit')
         ;
@@ -19,6 +19,6 @@ class NewuserType extends AbstractType
 
     public function getName()
     {
-        return 'task';
+        return 'new_user_form';
     }
 }
