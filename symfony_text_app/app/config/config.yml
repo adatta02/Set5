@@ -68,11 +68,15 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #     path:     "%database_path%"
-
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        default_entity_manager: default
+        entity_managers:
+            default:
+                mappings:
+                    AppBundle:
+                        dir: Entity
+                    FOSUserBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -85,4 +89,4 @@ swiftmailer:
 fos_user:
     db_driver: orm 
     firewall_name: main
-    user_class: src\AppBundle\Entity\User
+    user_class: AppBundle\Entity\User
