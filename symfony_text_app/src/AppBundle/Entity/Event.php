@@ -38,13 +38,10 @@ class Event
     private $eventName;
 
     /**
-     * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="User", inversedBy="events")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $userID;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=30)
@@ -160,5 +157,28 @@ class Event
     public function getTwilioNumber()
     {
         return $this->twilio_number;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Event
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

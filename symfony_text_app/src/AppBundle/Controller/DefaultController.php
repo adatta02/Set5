@@ -27,6 +27,11 @@ class DefaultController extends Controller
             $form->handleRequest( $request );
 
             if( $form->isValid() ){
+                $temp_user->setEnabled(true);
+
+                $userManager = $this->get('fos_user.user_manager');
+                $userManager->updateUser($temp_user, true);
+                $temp_user->setRoles(['ROLE_USER']);
                 $this->getDoctrine()->getManager()->persist($temp_user);
                 $this->getDoctrine()->getManager()->flush();
 
