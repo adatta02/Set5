@@ -18,6 +18,12 @@
             <link href="{{ asset('/bundles/app/css/text.css') }}" rel="stylesheet" />
         {% endblock %}
 
+        {% block javascripts %}
+            <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+            <script type="text/javascript" src="{{ asset('/bundles/app/js/bootstrap.js') }}"></script>
+        {% endblock %}
+
     </head>
     <body>
         <div class="container-full">
@@ -41,7 +47,6 @@
             <!--/navbar-->
         {% endblock %}
         {% block content %}{% endblock %}
-        {% block javascripts %}{% endblock %}
         </div>
     </body>
 </html>
