@@ -11,7 +11,7 @@ class EventType extends AbstractType
     {
         $builder
             ->add('eventName')
-            ->add('user_Id')
+            ->add('user')
             ->add('date', 'date', array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text

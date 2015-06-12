@@ -58,7 +58,17 @@ class DefaultController extends Controller
      * @Template
      */
     public function eventsAction(Request $request){
-        return [];
+        $queryBuilder = $em->createQueryBuilder();
+        $queryBuilder
+            ->select('c')
+            ->from ('event')
+            ->where('user_id = $this->getID()')
+            ;
+        $query = $queryBuilder->getQuery();
+        $events = $query->getResult();
+        print_r($events);
+
+        return [];     
     }
 
     /**
@@ -67,6 +77,7 @@ class DefaultController extends Controller
      */
     public function neweventAction(Request $request){
         $temp_event = new Event();
+        $temp_event->setUser($this->getUser());
 
         $form = $this->createForm(new EventType(), $temp_event);
 

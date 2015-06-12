@@ -37,10 +37,14 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            {% if is_granted('ROLE_USER') %}<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                            {% if is_granted('ROLE_USER') %}
+                                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                                <li><a href="{{ url('user_events') }}">My Events</a></li>
+                                <li><a href="{{ url('create_event') }}">Create New Events</a></li>
                             {% else %}
                             <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
                             {% endif %}
+                            <li></li>
                         </ul>
                     </div>
                 </div>
