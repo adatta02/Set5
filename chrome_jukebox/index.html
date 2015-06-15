@@ -74,7 +74,7 @@ var player = null;
 var playlistTemplate = _.template( $("#playlistTemplate").html() );
 
 function updatePlaylist(){
-    var reversedArray = Array.concat( queuedVideos );
+    var reversedArray = queuedVideos.slice();
     reversedArray.reverse();
     
     $("#playlist").html( playlistTemplate({videos: reversedArray}) );
@@ -183,7 +183,11 @@ function updateEvents(){
 }
 
 $(document).ready(function(){
-        
+    
+    window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+    window.messageBus = window.castReceiverManager.getCastMessageBus('urn:x-cast:com.setfive.jukebox');
+    window.castReceiverManager.start({statusText: "Application is starting"});
+    
     $.getJSON("event.json", function(event){
        var template = _.template( $("#headerTemplate").text() );       
        $("#header").html( template({event: event}) );
