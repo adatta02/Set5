@@ -26,8 +26,7 @@
   </div>
   
   <div class="header-wrapper">
-	  <div class="container header-container" id="header">
-	  </div>
+	  <div class="container header-container" id="header"></div>
   </div>
   
   <div class="body-container container">
@@ -44,11 +43,11 @@
 
 <script type="text/template" id="headerTemplate">
     <div class="col-md-9">
-        <h1 class="title"><%= party.name %></h1>
-        <h2 class="sub-title"><%= party.quote %></h2>
+        <h1 class="title"><%= event.name %></h1>
+        <h2 class="sub-title"><%= event.quote %></h2>
     </div>
     <div class="col-md-3 text-right">
-        <h3 class="textnum">Text to: <span><%= party.number %></span></h3>          
+        <h3 class="textnum">Text to: <span><%= event.number %></span></h3>          
     </div>
 </script>
 
@@ -165,7 +164,16 @@ function onPlayerStateChange(event){
 }
 
 $(document).ready(function(){
+    
     // queueSearch( {from: "201-952-9906", keyword: "sexy bitch video"});
+    
+    $.getJSON("event.json", function(event){
+       var template = _.template( $("#headerTemplate").text() );
+       
+       $("#header").html( template({event: event}) );
+       $("body").removeClass("loading");
+    });
+    
 });
 
 </script>   
