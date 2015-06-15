@@ -3,6 +3,19 @@ body {
   background: #fff;
   min-height: 100vh;
 }
+body.loading .loading-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+body.loading .header-wrapper,
+body.loading .body-container {
+  display: none;
+}
+.loading-banner {
+  display: none;
+}
 .header-wrapper {
   background-color: #ECF0F1;
   border-bottom: 2px solid #ccc;

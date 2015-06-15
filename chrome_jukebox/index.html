@@ -17,17 +17,16 @@
     <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script src="underscore-min.js"></script>    
   </head>
-  <body>  
+  <body class="loading">
+  
+  <div class="loading-banner">
+    <div class="text-center">
+        <img src="loader.gif" />
+    </div>
+  </div>
   
   <div class="header-wrapper">
-	  <div class="container header-container">
-	    <div class="col-md-9">
-	        <h1 class="title">An awesome party!</h1>
-	        <h2 class="sub-title"> "Ain't no time like party time"</h2>
-	    </div>
-	    <div class="col-md-3 text-right">
-	       <h3 class="textnum">Text to: <span>617-349-2939</span></h3>	        
-	    </div>
+	  <div class="container header-container" id="header">
 	  </div>
   </div>
   
@@ -42,6 +41,16 @@
         </div>
     </div>
   </div>    
+
+<script type="text/template" id="headerTemplate">
+    <div class="col-md-9">
+        <h1 class="title"><%= party.name %></h1>
+        <h2 class="sub-title"><%= party.quote %></h2>
+    </div>
+    <div class="col-md-3 text-right">
+        <h3 class="textnum">Text to: <span><%= party.number %></span></h3>          
+    </div>
+</script>
 
 <script type="text/template" id="playlistTemplate">
 <ul class="list list-unstyled">
@@ -144,14 +153,10 @@ function queueSearch( searchObj ){
 
 function init(){
     gapi.client.setApiKey("AIzaSyBpDjO4BtsuNJNou_ICN6UUMi5r2G6Nthw");
-    gapi.client.load('youtube', 'v3', function(){ 
-        queueSearch( {from: "201-952-9906", keyword: "sexy bitch video"});        
-    });
+    gapi.client.load('youtube', 'v3', function(){ });
 }
   
-function onYouTubeIframeAPIReady(){
-    
-}
+function onYouTubeIframeAPIReady(){ }
 
 function onPlayerStateChange(event){
     if( event.data == YT.PlayerState.ENDED ){
@@ -160,7 +165,7 @@ function onPlayerStateChange(event){
 }
 
 $(document).ready(function(){
-    
+    // queueSearch( {from: "201-952-9906", keyword: "sexy bitch video"});
 });
 
 </script>   
