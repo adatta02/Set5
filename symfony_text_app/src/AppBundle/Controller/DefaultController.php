@@ -58,17 +58,34 @@ class DefaultController extends Controller
      * @Template
      */
     public function eventsAction(Request $request){
-        $queryBuilder = $em->createQueryBuilder();
-        $queryBuilder
-            ->select('c')
-            ->from ('event')
-            ->where('user_id = $this->getID()')
-            ;
-        $query = $queryBuilder->getQuery();
-        $events = $query->getResult();
-        print_r($events);
 
-        return [];     
+        $today = Date("Y-m-d H:i:s");
+
+        $em = $this->getDoctrine()->getManager();
+
+        //Getting past events to display
+
+        $queryBuilderp = $em->getRepository('AppBundle:Event')
+            ->createQueryBuilder('u')
+            ->where('u.user = :user AND u.date < :today')
+            ->setParameters(['user'=> $this->getUser(), 'today' => $today]);
+            ;
+
+        $queryp = $queryBuilderp->getQuery();
+        $pastevents = $queryp->getResult();
+
+        //Getting future events to display
+
+        $queryBuilderf = $em->getRepository('AppBundle:Event')
+            ->createQueryBuilder('u')
+            ->where('u.user = :user AND u.date > :today')
+            ->setParameters(['user'=> $this->getUser(), 'today' => $today]);
+            ;
+
+        $queryf = $queryBuilderf->getQuery();
+        $futureevents = $queryf->getResult();
+
+        return ["today" => $today, "pastevents" => $pastevents, "futureevents" => $futureevents];     
     }
 
     /**

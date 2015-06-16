@@ -31,8 +31,8 @@ class Event
      * @Assert\Length(
      *      min = 3,
      *      max = 30,
-     *      minMessage = "Your Email must be at least {{ limit }} characters long",
-     *      maxMessage = "Your Email cannot be longer than {{ limit }} characters"
+     *      minMessage = "Your Event Name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your Event Name cannot be longer than {{ limit }} characters"
      * )
      */
     private $eventName;
